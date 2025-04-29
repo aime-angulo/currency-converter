@@ -1,1 +1,27 @@
-<p>currency-converter works!</p>
+<h1>Conversor de Divisas</h1>
+
+<label>
+  Cantidad:
+  <input type="number" [(ngModel)]="amount()" />
+</label>
+
+<label>
+  De:
+  <select [(ngModel)]="from()">
+    <option *ngFor="let key of Object.keys(currencies())" [value]="key">{{ key }}</option>
+  </select>
+</label>
+
+<label>
+  A:
+  <select [(ngModel)]="to()">
+    <option *ngFor="let key of Object.keys(currencies())" [value]="key">{{ key }}</option>
+  </select>
+</label>
+
+<button (click)="convert()" [disabled]="loading()">Convertir</button>
+
+<div *ngIf="result() !== null">
+  <h2>Resultado: {{ amount() }} {{ from() }} = {{ result() }} {{ to() }}</h2>
+</div>
+
